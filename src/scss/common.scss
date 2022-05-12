@@ -1,0 +1,243 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 400;
+    src: url(../font/NanumBarunGothicSubset.eot);
+    src: url(../font/NanumBarunGothicSubset.eot?#iefix) format('embedded-opentype'),
+        url(../font/NanumBarunGothicSubset.woff2) format('woff2'),
+        url(../font/NanumBarunGothicSubset.woff) format('woff'),
+        url(../font/NanumBarunGothicSubset.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 700;
+    src: url(../font/NanumBarunGothicBoldSubset.eot);
+    src: url(../font/NanumBarunGothicBoldSubset.eot?#iefix) format('embedded-opentype'),
+        url(../font/NanumBarunGothicBoldSubset.woff2) format('woff2'),
+        url(../font/NanumBarunGothicBoldSubset.woff) format('woff'),
+        url(../font/NanumBarunGothicBoldSubset.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 300;
+    src: url(../font/NanumBarunGothicLightSubset.eot);
+    src: url(../font/NanumBarunGothicLightSubset.eot?#iefix) format('embedded-opentype'),
+        url(../font/NanumBarunGothicLightSubset.woff2) format('woff2'),
+        url(../font/NanumBarunGothicLightSubset.woff) format('woff'),
+        url(../font/NanumBarunGothicLightSubset.ttf) format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-weight: 200;
+    src: url(../font/NanumBarunGothicUltraLightSubset.eot);
+    src: url(../font/NanumBarunGothicUltraLightSubset.eot?#iefix) format('embedded-opentype'),
+        url(../font/NanumBarunGothicUltraLightSubset.woff2) format('woff2'),
+        url(../font/NanumBarunGothicUltraLightSubset.woff) format('woff'),
+        url(../font/NanumBarunGothicUltraLightSubset.ttf) format('truetype');
+}
+
+$colorDementia : #4eb6ad;
+$colorDementiaSub: #F8FFFE;
+$colorDementiaPoint: #215f5a;
+
+$colorDepression : #80c783;
+$colorDepressionSub: #f8fff8;
+$colorDepressionPoint: #3e7040;
+
+$colorStress : #4777D9;
+$colorStressSub: #f5f9ff;
+$colorStressPoint: #2a4672;
+
+$colorSubline:#e1e1e1;
+$colorSubtxt:#989898;
+$colorDarkGray: #5d5d5d;
+$colorBgLightGray: #F1F1F1;
+
+$colorMaintxt: #000000;
+
+$colorWhite: #ffffff;
+$colorPageTit: #FFF0BF;
+
+$colorRedPoint: #F60033;
+
+$fontB: 700;
+$fontR: 400;
+$fontL: 300;
+
+$fzCont: 2.2rem;
+$fzContTit: 3.2rem;
+$fzPageTit: 2.4rem;
+
+
+//로그인 페이지 로그인 유지 checkbox 커스텀
+@mixin check_custom($border, $width:28px, $height:28px, $padding:42px) {
+    //좌측 기준
+    display            : inline-block;
+    position           : relative;
+    padding-left       : $padding;
+    line-height: $height;
+    cursor             : pointer;
+    
+
+    input {
+        position: absolute;
+        width   : 0; height  : 0;
+        opacity : 0;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+
+    .checkmark {
+        display : block;
+        width   : $width;
+        height  : $height;
+        border: $border;
+        position: absolute; top     : 0; left    : 0;
+        background: #fff;
+    }
+}
+
+@mixin checkshape($color) {
+    .checkmark:after {
+        display: none; 
+        position: absolute;
+        width:7px; height:13px; left:14px; top:5px; border:solid white;
+        border-width:0 2px 2px 0;
+        transform:rotate(45deg);
+        transform-origin: top;
+    }
+    input:checked+.checkmark {background: $color;}
+    input:checked+.checkmark:after {
+        content      : '';
+        display      : block;        
+    }
+}
+
+//테스트 페이지 텍스트 선택 radio 커스텀
+@mixin multiple_choice_custom($width: 100%, $height:10.62vh) {
+    display: inline-block;
+    width: $width;
+    height: $height;
+    margin-bottom: 1.56vh;
+    
+    input {
+        position: absolute;
+        width: 0;
+        height: 0;
+        opacity: 0;
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+    }
+}
+
+@mixin multiple_choice_txt($color, $lineheight: 1.18) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 1.56vh;
+    padding: 0 5%;
+    border-radius: 1.4rem;
+    background: $colorWhite;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    color: $color;
+    font-size: $fzCont;
+    //font-size => original: $fzCont / 키오스크 버전 2.5rem
+    line-height: $lineheight;
+    letter-spacing: 0px;
+    text-align: center;
+    word-break: keep-all;
+}
+
+@mixin multiple_choice_checked($color) {
+    input:checked+.multiple_choice_txt {
+        background: $color;
+        color: $colorWhite;
+        font-weight: $fontB;
+    }
+}
+
+//테스트 페이지 이미지 선택 checkbox, radio 커스텀
+@mixin image_choice_custom($padding: 2.18vh 3.9634%,$itemWidth: 47.6821%,$itemHeight: 14.37vh, $borderRadius: 1.4rem) {
+    .label_wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-content: space-between;
+    height: 51.87vh;
+    padding: $padding;
+    }
+
+    .image_choice_item {
+        display: inline-block;
+        width: $itemWidth;
+        height: $itemHeight;
+
+        input {
+            position: absolute;
+            width: 0;
+            height: 0;
+            opacity: 0;
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+        }
+    }
+
+    .image_wrap {
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+        border-radius: $borderRadius;
+        background: $colorBgLightGray;
+
+        // &::before {
+        //     position: absolute;
+        //     top: 0;
+        //     left: 0;
+        //     z-index: 20;
+        //     width: 100%;
+        //     height: 100%;
+        //     background: rgba(0, 0, 0, 0.5);
+        //     content: '';
+        // }
+
+        &::after {
+            position: absolute;
+            top: 0.78vh;
+            right: 0.78vh;
+            width: 4.22vh;
+            height: 4.22vh;
+            background: url(../images/icon_selected.svg) no-repeat center;
+            background-size: cover;
+            opacity: 0;
+            content: '';
+        }
+
+        img {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            transform: translateY(-50%);
+        }
+    }
+}
+
+@mixin image_choice_checked($border:4px solid $colorDementia) {
+    //$border => original: 4px / 키오스크 버전 8px
+    input:checked+.image_wrap {
+        border: $border;
+
+            // &::before {opacity: 0;}
+            &::after {opacity: 1;}
+    }
+}

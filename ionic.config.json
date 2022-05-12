@@ -1,0 +1,8 @@
+{
+  "name": "정신건강테스트",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react",
+  "root" : "/"
+}

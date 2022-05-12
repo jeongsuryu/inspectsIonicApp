@@ -1,0 +1,1859 @@
+@import './common.scss';
+
+html {font-size:10px;}
+body {
+    background: #ffffff;
+    color: #000000;
+    height: 100%;
+    font-weight: $fontR;
+
+    // 이미지 및 배경 선명하게 렌더링
+    image-rendering: -moz-crisp-edges;
+    /* Firefox */
+    image-rendering: -o-crisp-edges;
+    /* Opera */
+    image-rendering: -webkit-optimize-contrast;
+    /* Webkit (non-standard naming) */
+    image-rendering: crisp-edges;
+    -ms-interpolation-mode: nearest-neighbor;
+}
+
+.my-custom-class {
+    --background: #e5e5e5;
+  }
+/*============================
+*   모바일 mobile 버전
+*============================*/
+/*============================
+*   공통 스타일
+*============================*/
+.inspects_container {
+    height:100vh;
+}
+.inspects_wrap {
+    display: flex;
+    flex-direction: column;    
+    // align-items: center;
+    width: 100%;
+    height:100%;
+    margin: 0 auto;
+    font-family: 'NanumBarunGothic';
+    padding: 0;
+
+//카테고리별 배경이미지 지정
+
+    &.dementia {
+        background: $colorDementiaSub url(../images/bg_dementia.svg) no-repeat top center;
+        // background-size: 100% 53.75%;
+        background-size: contain;
+
+        // .tnb_area {background: $colorDementia;}
+    }
+
+    &.depression {
+        background: $colorDepressionSub url(../images/bg_depression.svg) no-repeat top center;
+        // background-size: 100% 53.75%;
+        background-size: contain;
+
+        // .tnb_area {background: $colorDepression;}
+
+        //우울증 테스트 페이지 중 질문 페이지만 배경이 다름
+        &.question {
+            background: $colorDepressionSub url(../images/bg_depression_long.svg) no-repeat top center;
+            // background-size: 100% 75.4687%;
+            background-size: 100% auto;
+            // background-size: contain;
+        }
+    }
+
+    &.stress {
+        background: $colorStressSub url(../images/bg_stress.svg) no-repeat top center;
+        // background-size: 100% 53.75%;
+        background-size: contain;
+
+        // .tnb_area {background: $colorStress;}
+    }
+}
+
+
+//상단 타이틀 바 스타일
+.tnb_area {
+    display: flex;
+    align-items: center;
+  //  width: 100%;
+   // height: auto;
+//    padding-top: 3.75vh;
+
+    .basic_box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 3vh 4.4444% 1.87vh;
+
+        &.tool_bar {
+            padding-bottom:5%
+        }
+
+        // .btn_home, .btn_hamburger, .btn_close, .btn_sound_toggle {
+        
+        //     img {width: auto; height: 100%;}
+        // }
+
+        .btn_hamburger, .btn_close {margin-left: auto; }
+        .btn_hamburger img {max-width:initial; height:100%;}
+    }
+
+    .page_tit {
+        width: 100%;
+        color: $colorPageTit;
+        font-size: $fzPageTit;
+        text-align: center;
+        letter-spacing: -0.6px;
+    }
+}
+
+.contents_wrap {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    height: 100%;
+    margin: 0 auto auto;
+    padding: 0 4.44%;
+}
+
+.cont_tit {
+    color: $colorMaintxt;
+    font-weight: $fontB;
+    font-size: $fzContTit;
+    text-align: center;
+    letter-spacing: -0.8px;
+}
+
+//테스트 카테고리 영역
+.box_area {
+    cursor: pointer;
+
+    &.dementia {
+        background: $colorDementia url(../images/arrow_next_white.svg) no-repeat center right 4.17vw;
+        background-size: 9.756%;
+        color: $colorWhite;
+    }
+
+    &.depression {
+        background: $colorDepression url(../images/arrow_next_white.svg) no-repeat center right 4.17vw;
+        background-size: 9.756%;
+        color: $colorWhite;
+    }
+
+    &.stress {
+        background: $colorStress url(../images/arrow_next_white.svg) no-repeat center right 4.17vw;
+        background-size: 9.756%;
+        color: $colorWhite;
+    }
+}
+
+//최하단 버튼
+.btn_btm {
+    &.off {display: none;}
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90.2439%;
+    height: 6.56vh;
+    border-radius: 1.4rem;
+    margin: auto auto 2.03vh;
+    background: $colorDarkGray;
+    color: $colorWhite;
+    font-weight: $fontB;
+    font-size: $fzCont;
+    letter-spacing: -0.55px;
+
+    &::active {outline:1px solid $colorSubtxt}
+    .next_question {
+       // height: 6.56vh;
+        position: relative;
+        padding-right: 3.4rem;
+       // line-height: 6.56vh;
+
+        &::after {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 2.4rem;
+            height: 2.4rem;
+            background: url(../images/arrow_next_question.svg) no-repeat center;
+            background-size: contain;
+            content: '';
+            transform: translateY(-50%);
+        }
+    }
+}
+
+//다시 듣기 버튼
+.listen_again {
+    position: absolute;
+    width: 29.878%;
+    height: 6.25vh;
+    border-radius: 1.2rem;
+    background: $colorSubline;
+    color: $colorMaintxt;
+    font-size: 2rem;
+    font-weight: $fontB;
+    letter-spacing: -0.5px;
+    text-align: center;
+}
+
+/*============================
+*   로그인 페이지
+*============================*/
+.instpects_login {
+    display: flex;
+    flex-direction: column;
+    flex:1;
+    //height: calc(100vh - 36px);
+    //margin-top: 36px;
+    padding: 0 4.4444%;
+
+    .title_area {
+        width: auto;
+        margin: 0 auto 1.87vh;     
+        color: $colorStress;
+
+        h2 {
+            //padding-right:149px;
+            padding-top: 14.37vh;
+            padding-bottom: 1.56vh;
+            background: url('../images/inspects_icon.svg') no-repeat bottom 1.56vh right 6.5574%;
+            background-size: 30.1639% auto;
+            font-size: 1.6rem;
+        }
+        p {font-size: 5rem;
+            letter-spacing: -1.25px;
+            line-height: 1.16;
+        }
+    }
+
+    .inp_box {
+        border: 1px solid $colorSubline;
+        border-radius: 0.4rem;
+        padding: 3.12vh 4.5731%;
+        margin-bottom: 2.5vh;
+
+        input {width:100%; font-size: 1.8rem; vertical-align: middle;}
+    }
+
+    .box_lay2 {display: flex; align-items: center;}
+    .btn_show_blind {
+        font-size: 1.2rem; 
+        color:$colorStress;
+
+        &:active {text-decoration: underline; text-underline-position: under;}
+    }
+
+    .check_custom {
+        @include check_custom(1px solid #4777d9);
+        @include checkshape($colorStress);
+        color: $colorMaintxt;
+        .checkmark {border-radius: 0.6rem;}
+        margin-bottom: 4.68vh;
+        font-size: 1.7rem;
+    }
+
+    .signs_area {
+        display: flex;
+        justify-content: center;
+        margin: 4.68vh auto 0;
+        text-align: center;        
+
+        a {
+            display: inline-block;
+            border-right: 1px solid $colorSubline;
+            font-size: 1.6rem;
+            color: $colorMaintxt;
+
+        }
+        a:first-child {padding-right:2rem}
+
+        .middle_txt {padding: 0 2rem;}
+        .last_txt {border-right: 0; padding-left: 2rem;}
+    }
+
+}
+.btn_ispt_blue {
+    display: block;
+    width:100%;
+    padding: 4.5% 0;
+    font-size: 2.6rem;
+    color:#fff;
+    font-weight: $fontB;
+    background: $colorStress;
+    border-radius: 1.4rem;
+    text-align: center;
+}
+.foot_version_info {
+    margin-top: auto;
+    padding-bottom: 2.5vh;
+    font-size: 1.4rem;
+    text-align: center;
+
+    b {color:#000; padding-right: 1rem;}
+    span {color:$colorSubtxt}
+}
+
+/*============================
+*   회원가입 페이지
+*============================*/
+.signup_wrap {
+    display: flex; flex-direction:column; height: 100%;
+    padding: 0 15px 15px;
+
+    .tnb_area .basic_box {padding-left:0; padding-right: 0;}
+    .page_tit {color:$colorStress}
+ 
+    .signup_subtit {padding-top: 7.8%; padding-bottom: 10%; font-size: $fzPageTit; text-align: center;}
+    
+    .check_custom {
+        @include check_custom(1px solid #707070, 22px, 22px, 30px);
+        font-size: 1.6rem; 
+       .checkmark {border-radius: 6px;}
+
+       @include checkshape(white);
+       input:checked + .checkmark {border: 0}
+        input:checked + .checkmark:after {
+            position: static;
+            background: url('../images/icon_check_on.svg') no-repeat;
+            border:0;
+            width:22px; height:22px;
+            transform:none;
+        }
+    }
+
+    .agree_area {
+        display: flex; justify-content: space-between;
+        align-items: center;
+        color:$colorDarkGray;
+
+        &+.agree_area{margin-bottom: 5.2%}
+    
+
+        .btn_term {color:$colorDementia; font-size: 1.6rem; text-decoration: underline;}
+    }
+    .all_terms_area {color:#000; margin-bottom: 6.5%;}
+    .btn_area {margin-top: auto;}
+    .btn_next {display: block; width: 100%; padding: 4.5% 0; border-radius: 16px; font-size: $fzCont; color:#fff; text-align: center; background: $colorSubtxt;
+        &.on {background: $colorStress;}
+    }
+
+    .inp_box {border: 1px solid $colorSubline; border-radius: 6px; 
+        padding: 20px 12px;}
+    .name_box {margin-bottom: 10px;}
+    .pw_box {margin-bottom: 10px; margin-top: 10px;}
+    .inp {font-size: 1.6rem; width: 100%;}
+
+    // .gender_area {
+    //     display: flex; padding: 20px 12px 30px; justify-content: space-between;
+        
+    //     button {
+    //         flex:1;
+    //         padding: 9px 0;
+    //         border: 1px solid $colorSubline;
+    //         border-radius: 4px;
+    //         text-align: center;
+    //         color:$colorSubline;
+    //         font-size: 1.6rem;
+
+    //         &.active {
+    //             border: 1px solid $colorSubtxt;
+    //             color:$colorSubtxt;
+    //         }
+    //     }
+    //     .female {margin-right: 24px;}
+    // }
+    .gigwan_gain {margin-top: 20px;}
+    .gigwan_gain .inp_box {margin-top: 10px;}
+    .check_area {display: flex;
+        .check_custom { flex:1;}
+    }
+    
+}
+
+.index_bar {display: flex; justify-content: center; align-items: flex-end; padding-top: 30px;
+
+    .step { width:12px; height:12px;
+        border: 1px solid $colorSubtxt; border-radius: 50%;
+        &.passed {border-color: #dfdfdf;}
+        &.active {width:30px; height:30px; background: url('../images/inspects_icon.svg') 0/cover no-repeat; border: 0}
+    }
+    .step, .line { display: block; }
+    .line {width:11px; height: 1px; background: $colorSubtxt;
+        margin:0 1px 6px;
+        &.passed {
+            background: #dfdfdf;
+        }
+    }
+}
+
+
+
+/*============================
+*   홈 (테스트 선택) 페이지
+*============================*/
+.tnb_area.home {background: $colorStress;}
+
+.welcome_txt {
+    color: $colorWhite;
+    font-size: $fzCont;
+    letter-spacing: 0px;
+}
+
+.wrap_inspects_home {
+    display: flex;
+    flex-direction: column;
+    height:100%;
+}
+.inspects_home {
+//    height: auto;
+
+    .cont_tit {
+        width: 100%;
+        // border: 1px solid $colorSubline;
+     //   border-radius: 1.4rem;
+        padding: 3.9vh 0;
+    }
+    .box_wrap {display: block; }
+    .box_wrap + .box_wrap {margin-top: 1.56vh;}
+
+}
+.test_category_boxes .box_area {
+    display: flex;
+    align-items: center;
+    //height: 18.75vh;
+    border-radius: 1.4rem;
+    padding: 3.75vh 4.57% 3.75vh 7%;
+    // margin-bottom: 1.56vh;
+    // padding-left: 9.14%;
+
+    figcaption {position: relative; width: 100%; margin-left: 4.26%;
+        display: flex; flex-direction:column;
+    }
+
+
+    .category_tit {
+        position: relative;
+        //width: 45%;
+        //margin-left: 6.09%;
+        margin-bottom: 10px;
+        font-size: 3.6rem;
+        //line-height: 1.17;
+        letter-spacing: 0;
+    }
+
+    .category_subtit {       
+        font-weight: $fontR;
+        font-size: 1.2rem;
+        color: $colorSubline;
+        letter-spacing: -0.12px;
+    }
+}
+
+.banner_thin_area {
+    width: 100%;
+    padding-left:5.83%;
+    padding-right:5.83%;
+    background: #192641;
+    
+    .banner_cont_wrap {
+        padding: 3.28vh 0;
+        background: url(../images/enbrain_game_mockup.png) no-repeat bottom -1.8vh right;
+        background-size: auto 99.2208%;
+    }
+
+    .banner_box {display: block;}
+
+    .banner_para {
+        margin-bottom: 0.2rem;
+        color: $colorWhite;
+        font-size: 1.2rem;
+        letter-spacing: -0.3px;
+        line-height: 1.25;
+        text-shadow: 1px 1px 0 #3F6BDB;
+
+        .highlight {color: #FFE387;}
+    }
+
+    .banner_tit {
+        color: $colorWhite;
+        font-weight: $fontB;
+        font-size: 1.8rem;
+        letter-spacing: -0.45px;
+        line-height: 1.11;
+        text-shadow: 1px 1px 0 #3F6BDB;
+    }
+}
+
+
+/*============================
+*   결과 다시보기 및 설정 페이지
+*============================*/
+.tnb_area.option {background: $colorStress;}
+
+.btn_logout {
+    border: 1px solid $colorWhite;
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    color: $colorWhite;
+    font-size: 2rem;
+    letter-spacing: 0px;
+    text-align: center;
+}
+
+.inspects_option {
+
+    .cont_tit {
+        width: 100%;
+        // border: 1px solid $colorSubline;
+        border-radius: 1.4rem;
+        margin: 2.5vh auto;
+        padding: 1.4vh 0;
+    }
+}
+
+.results_view_boxes {
+
+    .box_wrap {
+        display: block;
+        margin-bottom: 1.56vh;
+    
+        &:last-of-type {margin-bottom: 0;}
+    }
+
+    .box_area {
+        display: flex;
+        align-items: center;
+        height: 15vh;
+        border-radius: 1.4rem;
+        padding-left: 9.14%;
+
+        img {
+            display: block;
+            width: auto;
+            height: 66.6667%;
+        }
+
+        figcaption {
+            position: relative;
+            width: 100%;
+            margin-left: 6.09%;
+        }
+
+        .category_tit {
+            margin-bottom: 0.46vh;
+            font-size: 3rem;
+            line-height: 1.17;
+            letter-spacing: 0;
+        }
+
+        .link_past_result {
+            font-size: $fzCont;
+            text-decoration: underline;
+            letter-spacing: -0.22px;
+            line-height: 1.18;
+            text-underline-position: under;
+        }
+    }
+}
+
+.external_links {
+    margin-top: 5vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    .btn_link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 48.78%;
+        height: 6.56vh;
+        border-radius: 1.4rem;
+        margin-bottom: 1.25vh;
+        background: $colorDarkGray;
+        color: $colorWhite;
+        font-size: 1.8rem;
+        letter-spacing: 0px;
+
+        &:nth-of-type(3),
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+    }
+}
+
+//이용약관 팝업
+.modal_terms {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal_wrap {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal_contents {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 91.1111%;
+        height: 90vh;
+        border-radius: 1.4rem;
+        background: $colorWhite;
+        text-align: center;
+
+        img {width: 30.4878%; margin-bottom: 4.68vh;}
+    }
+
+    .terms_tit {
+        color: $colorMaintxt;
+        font-size: $fzContTit;
+        font-weight: $fontB;
+        margin: 2.77vh auto;
+    }
+    
+    .terms_wrap {
+        overflow: scroll;
+        height: auto;
+        padding: 0 5%;
+        color: $colorMaintxt;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+        text-align: left;
+        //스크롤바 숨기기
+        overflow-y: auto;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        .terms_section {
+            display: block;
+            margin: 1.56vh 0 1.56vh 0;
+            font-weight: $fontB;
+            font-size: $fzPageTit;
+        }
+
+        li {margin: 1.56vh 0;}
+    }    
+
+    .btn_wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 85.3658%;
+        margin: 2.77vh 0 2.77vh 0;
+    }
+
+    .modal_btn {
+        width: 45.3571%;
+        height: 10.62vh;
+        border-radius: 1.4rem;
+        background: $colorDarkGray;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: $colorWhite;
+        font-size: $fzCont;
+        font-weight: $fontB;
+        letter-spacing: 0px;
+        line-height: 10.62vh;
+
+        &:active {
+            background: $colorRedPoint;
+        }
+    }
+}
+
+//회원탈퇴 팝업
+.modal_delete_account {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal_wrap {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal_contents {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 91.1111%;
+        height: 66.09vh;
+        border-radius: 1.4rem;
+        background: $colorWhite;
+        text-align: center;
+
+        // img {width: 30.4878%; margin-bottom: 4.68vh;}
+        img {width: 19.51%; margin-bottom: 4.68vh;}
+    }
+
+    .modal_para {
+        margin-bottom: 4.68vh;
+        color: $colorMaintxt;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+    }
+
+    .modal_tit {
+        margin-bottom: 4.68vh;
+        color: $colorMaintxt;
+        font-weight: $fontB;
+        font-size: 2.4rem;
+        letter-spacing: -0.6px;
+        line-height: 1.18;
+    }
+
+    .btn_wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 85.3658%;
+    }
+
+    .modal_btn2 {
+        width: 45.3571%;
+        height: 10.62vh;
+        border-radius: 1.4rem;
+        background: $colorDarkGray;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: $colorWhite;
+        font-size: $fzCont;
+        font-weight: $fontB;
+        letter-spacing: 0px;
+        line-height: 10.62vh;
+
+        &:active {
+            background: $colorRedPoint;
+        }
+    }
+}
+
+/*============================
+*   테스트 인트로 페이지
+*============================*/
+.inspects_intro {
+    position: relative;
+    
+    .intro_contents_area {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 75.78vh;
+        // padding-top: 7.81vh;
+        border-radius: 1.4rem;
+        background: $colorWhite;
+        text-align: center;
+    }
+
+    .img_wrap {
+        position: relative;
+        z-index: 10;
+        width: 15.62vh;
+        height: 15.62vh;
+        margin-bottom: 6.52vh;
+
+        img {width: 100%;}
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            content: '';
+        }
+    }
+
+    .cont_tit {margin-bottom: 6.52vh;}
+
+    .cont_para {
+        color: $colorMaintxt;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+    }
+}
+
+// .listen_again {
+//     top: 0.93vh;
+//     right: calc(4.4444% + 0.93vh);
+// }
+
+//테마 컬러 설정
+.inspects_wrap {
+
+    &.dementia {
+        .intro_contents_area {box-shadow: 0px 2px 10px $colorDementia;}
+        .img_wrap {background: url(../images/icon_dementia.svg) no-repeat center; background-size: cover;}
+    }
+    &.depression {
+        .intro_contents_area {box-shadow: 0px 2px 10px $colorDepression;}
+        .img_wrap {background: url(../images/icon_depression.svg) no-repeat center; background-size: cover;}
+    }
+    &.stress {
+        .intro_contents_area {box-shadow: 0px 2px 10px $colorStress;}
+        .img_wrap {background: url(../images/icon_stress.svg) no-repeat center; background-size: cover;}
+    }
+}
+
+
+/*============================
+*   테스트 완료 페이지
+*============================*/
+.inspects_end {
+    position: relative;
+    
+    .end_contents_area {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 75.78vh;
+        border-radius: 1.4rem;
+        background: $colorWhite;
+        text-align: center;
+    }
+
+    .img_wrap {
+        position: relative;
+        z-index: 10;
+        width: 15.62vh;
+        height: 15.62vh;
+        margin-bottom: 6.52vh;
+
+        img {width: 100%;}
+
+        &::before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            content: '';
+        }
+    }
+
+    .cont_tit {margin-bottom: 6.52vh;}
+
+    .cont_para {
+        color: $colorMaintxt;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+    }
+}
+
+/*============================
+*   테스트 결과 페이지
+*============================*/
+.result_tit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8.12vh;
+    border-radius: 1.4rem 1.4rem 0 0;
+    color: $colorWhite;
+    font-size: $fzPageTit;
+    font-weight: $fontB;
+    letter-spacing: -0.6px;
+    text-align: center;
+}
+
+.result_info_wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 17.34vh;
+    border-radius: 0 0 1.4rem 1.4rem;
+    background: $colorWhite;
+}
+
+.result_info {
+    display: flex;
+    align-items: center;
+    color: $colorMaintxt;
+    font-size: $fzCont;
+    letter-spacing: -0.55px;
+    line-height: 1.68;
+}
+
+.result_score {
+    margin-left: 1rem;
+    font-size: 3rem;
+    font-weight: $fontB;
+    letter-spacing: -0.75px;
+    text-decoration: underline;
+    text-underline-position: under;
+}
+
+.result_recommend {
+    color: $colorMaintxt;
+    font-size: $fzCont;
+    font-weight: $fontB;
+    letter-spacing: -0.55px;
+    text-align: center;
+    line-height: 1.68;
+}
+
+.result_contents_wrap {
+    display: flex;
+    flex-direction: column;
+    height: 60.47vh;
+    margin-top: 3vh;
+    // margin-top: 2.5vh;
+    padding-top: 2.5vh;
+    border-radius: 1.4rem 1.4rem 0 0;
+}
+
+.result_standard_list p {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 91.4634%;
+    height: 10.62vh;
+    border-radius: 1.4rem;
+    margin: 0 auto 1.56vh;
+    background: $colorWhite;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+    color: $colorMaintxt;
+    font-size: $fzCont;
+    letter-spacing: 0px;
+    line-height: 1.36;
+    text-align: center;
+
+    &.result_standard_guide {
+        color: $colorSubtxt;
+    }
+}
+
+.result_warning {color: $colorRedPoint;}
+.result_try {color: $colorDepression;}
+.result_congrats {color: $colorStress;}
+
+.result_tit_wrap {
+    .result_warning, .result_try, .result_congrats {color: inherit;}
+}
+
+//테마 컬러 설정
+.inspects_wrap {
+
+    &.dementia {
+        .result_tit {background: $colorDementiaPoint;}
+        .result_score {color: $colorDementia;}
+        .result_contents_wrap {background: $colorDementiaSub;}
+    }
+
+    &.depression {
+        .result_tit {background: $colorDepressionPoint;}
+        .result_score {color: $colorDepression;}
+        .result_contents_wrap {background: $colorDepressionSub;}
+    }
+
+    &.stress {
+        .result_tit {background: $colorStressPoint;}
+        .result_score {color: $colorStress;}
+        .result_contents_wrap {background: $colorStressSub;}
+    }
+}
+
+/*============================
+*   결과 다시보기 페이지
+*============================*/
+.recent_result {
+    display: flex;
+    align-items: center;
+    color: $colorSubtxt;
+    font-size: $fzCont;
+    letter-spacing: -0.55px;
+    line-height: 1.68;
+
+    .result_score {
+        margin-left: 2rem;
+    }
+    .result_value {padding-left: 7px;}
+}
+
+.past_result_list {
+    height: 48.5vh;
+    //스크롤바 숨기기
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    li {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 91.4634%;
+        height: 10.62vh;
+        border-radius: 1.4rem;
+        margin: 0 auto 1.56vh;
+        background: $colorWhite;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+        color: $colorSubtxt;
+        font-size: $fzCont;
+        letter-spacing: 0px;
+        line-height: 1.36;
+        text-align: center;
+    }
+}
+
+.past_result_score {font-weight: $fontB;}
+
+//컬러 테마 설정
+.inspects_wrap {
+
+    &.dementia .past_result_score {color: $colorDementia;}
+    &.depression .past_result_score {color: $colorDepression;}
+    &.stress .past_result_score {color: $colorStress;}
+}
+
+/*============================
+*   테스트 페이지
+*============================*/
+.inspects_question_wrap {
+    position: relative;
+
+    .listen_again {
+        top: 0.93vh;
+        right: 0.93vh;
+    }
+}
+
+.question_tit {
+    display: flex;
+    align-items: center;
+    height: 8.12vh;
+    padding-left: 3.6585%;
+    border-radius: 1.4rem 1.4rem 0 0;
+    color: $colorWhite;
+    font-size: $fzCont;
+    font-weight: $fontB;
+    letter-spacing: -0.55px;
+    text-align: center;
+}
+
+.question_cont {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap:wrap;
+    height: 17.34vh;
+    padding: 0 20px;
+    word-break:keep-all;
+    border-radius: 0 0 1.4rem 1.4rem;
+    background: $colorWhite;
+    color: $colorMaintxt;
+    font-weight: $fontB;
+    font-size: $fzCont;
+    line-height: 1.36;
+    text-align: center;
+}
+
+.question_txt_highlight {display: block;
+    color: $colorRedPoint;}
+
+.inspects_contents_wrap {
+    display: flex;
+    flex-direction: column;
+    height: 60.47vh;
+    margin-top: auto;
+    border-radius: 1.4rem 1.4rem 0 0;
+}
+
+//텍스트 선택지 영역(하단에 컬러 테마와 함께 추가 설정 있음)
+.multiple_choice_area {
+    // margin-top: 2.5vh;
+    padding: 0 4.2683%;
+
+    fieldset { width: 100%; }
+
+    &.off {display: none;}
+}
+
+//치매 테스트 24번 문항 숫자 카운트(키오스크)
+.inspects_counts_wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: auto;
+    // margin-top: 15.62vh;
+    margin-top: 21.72vh;
+
+    .counts_para {
+        // margin-bottom: 6.25vh;
+        color: $colorRedPoint;
+        font-weight: $fontB;
+        font-size: 4.8rem;
+        letter-spacing: -1.2px;
+        line-height: 1.16;
+        text-align: center;
+    }
+
+    // .counts_nbr {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     width: 12.5vh;
+    //     height: 12.5vh;
+    //     border-radius: 50%;
+    //     background: $colorDementia;
+    //     color: $colorWhite;
+    //     font-weight: $fontB;
+    //     font-size: 4.8rem;
+    //     text-align: center;
+    // }
+}
+
+.image_choice_area.off {display: none;}
+
+//사진 선택 영역
+.object_show3 {
+    @include image_choice_custom($padding: 5vh 4.878%,$itemWidth: 47.973%,$itemHeight: 20vh);
+
+    &.off {display: none;}
+
+    .image_choice_item:first-of-type {margin: 0 26.0135%;}
+    .image_wrap::before {opacity: 0;}
+}
+
+.object_choice6 {
+    @include image_choice_custom;
+
+    &.off {display: none;}
+
+    .image_choice_item {@include image_choice_checked;}
+}
+
+.fruit_choice6 {
+    @include image_choice_custom;
+
+    &.off {display: none;}
+
+    .image_choice_item {@include image_choice_checked;}
+}
+
+.fruit_choice4 {
+    @include image_choice_custom($padding: 5vh 4.878%,$itemWidth: 47.973%,$itemHeight: 20vh);
+
+    &.off {display: none;}
+
+    .image_choice_item {@include image_choice_checked;}
+}
+
+.flag_choice4 {
+    @include image_choice_custom($padding: 5vh 4.878%,$itemWidth: 47.973%,$itemHeight: 20vh);
+
+    &.off {display: none;}
+
+    .image_choice_item {@include image_choice_checked;}
+    .image_wrap img {
+        width: 88.303%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.number_choice4 {
+    @include image_choice_custom($padding: 5vh 4.878%,$itemWidth: 47.973%,$itemHeight: 20vh);
+    
+    &.off {display: none;}
+
+    .image_choice_item {@include image_choice_checked;}
+}
+
+.drag_drop_area {
+    position: relative;
+    margin-top: 1.56vh;
+    height: 45.63vh;
+
+    &.off {display: none;}
+
+    .dragzone, .dropzone {
+        display: inline-block; 
+        position: absolute; 
+        // width:fit-content;
+        width: 80px;
+        img {width: 100%;}
+    }
+
+    .dragzone {top:0; right:0; z-index: 1; cursor:grap;}
+    .dropzone { left:0; bottom:0}
+
+    //&.move_paper .dropzone {   }
+
+    // &.move_triangle .dropzone.after {top: calc(100% - 160px); }
+}
+
+//컬러 테마 및 영역 사이즈 설정
+.inspects_wrap {
+
+    &.dementia {
+
+        .question_tit {background: $colorDementiaPoint;}
+        .inspects_contents_wrap {
+            // margin-top: 2.5vh; 
+            background: $colorDementiaSub;}
+        .multiple_choice_custom {
+            @include multiple_choice_custom;
+            @include multiple_choice_checked($colorDementia);
+            &:first-of-type{margin-top: 2.5vh;}
+        }
+        .multiple_choice_txt {
+            @include multiple_choice_txt($color: $colorDementia);
+        }
+    }
+
+    &.depression {
+
+        .question_tit {background: $colorDepressionPoint;}
+        .question_cont {height: 36.56vh;}
+        .inspects_contents_wrap {
+            height: 39.69vh;
+            // margin-top: 4vh;
+            background: $colorDepressionSub;
+        }
+        .multiple_choice_area {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 4.06vh;
+            padding: 0 7.3171%;
+
+            // fieldset {display: flex; justify-content: space-between;}
+        }
+        .multiple_choice_custom {
+            @include multiple_choice_custom($width: 45.3571%, $height: 10.63vh);
+            @include multiple_choice_checked($colorDepression);
+        }
+        .multiple_choice_txt {
+            @include multiple_choice_txt($color: $colorDepression, $lineheight: 0);
+        }
+    }
+
+    &.stress {
+
+        .question_tit {background: $colorStressPoint;}
+        .inspects_contents_wrap {
+            // margin-top: 2.5vh; 
+            background: $colorStressSub;}
+        .multiple_choice_custom {
+            @include multiple_choice_custom($height: 8.12vh);
+            @include multiple_choice_checked($colorStress);
+            &:first-of-type{margin-top: 2.5vh;}
+        }
+        .multiple_choice_txt {
+            @include multiple_choice_txt($color: $colorStress, $lineheight: 0);
+        }
+    }
+}
+
+//테스트 중 홈으로 가기 팝업
+.modal_go_home {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    .modal_wrap {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .modal_contents {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 91.1111%;
+        // height: 45.94vh;
+        height: auto;
+        padding: 4.68vh 0;
+        border-radius: 1.4rem;
+        background: $colorWhite;
+        text-align: center;
+
+        img {width: 19.51%; margin-bottom: 4.68vh;}
+    }
+    
+    .modal_tit {
+        margin-bottom: 4.68vh;
+        color: $colorMaintxt;
+        font-weight: $fontB;
+        font-size: 2.4rem;
+        letter-spacing: -0.6px;
+        line-height: 1.18;
+    }
+
+    .modal_para {
+        margin-bottom: 4.68vh;
+        color: $colorMaintxt;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+    }
+
+    .btn_wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 85.3658%;
+    }
+
+    .modal_btn2 {
+        width: 45.3571%;
+        padding: 2.5vh 0;
+        border-radius: 1.4rem;
+        background: $colorDarkGray;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        color: $colorWhite;
+        font-size: $fzCont;
+        font-weight: $fontB;
+        letter-spacing: 0px;
+
+        &:hover, &:focus {
+            background: $colorRedPoint;
+        }
+    }
+}
+
+/*============================
+*   광고 페이지
+*============================*/
+.blind_inline.ads {position: absolute;}
+
+.inspects_ads {
+    position: relative;
+    height: 100%;
+
+    //slick dots 커스텀
+    .slick-dots {
+        position: absolute;
+        z-index: 20;
+        top: 33px;
+        left: 4.4444%;
+        width: auto;
+        height: 5vh;
+        padding: calc((5vh - 1.2rem) / 2) 0;
+
+        li {
+            display: inline-block;
+            margin-right: 1.25vh;
+
+            button {
+                color: transparent;
+                font-size: 0;
+                width: 1.2rem;
+                height: 1.2rem;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.4);
+                transition: all 0.2s;
+            }
+
+            &:last-of-type {margin-right: 0;}
+
+            &.slick-active button {
+                width: 3.6rem;
+                border-radius: 8rem;
+                background: $colorWhite;
+            }
+        }
+    }
+
+    .btn_exit {
+        display: flex;
+        align-items: center;
+        position: absolute;
+        z-index: 20;
+        top: 33px;
+        right: 4.4444%;
+        height: 5vh;
+
+        img {
+            width: auto;
+            height: 100%;
+        }
+    }
+
+    .ads_slides_area {
+        width: 100%;
+        height: 100%;
+    }
+
+    // .ads_arrow_wrap {
+    //     display: flex;
+    //     justify-content: space-between;
+    //     position: absolute;
+    //     z-index: 20;
+    //     top: 50%;
+    //     width: 100%;
+    //     padding: 0 0.5556%;
+    //     transform: translateY(-50%);
+
+    //     .ads_arrow_prev, .ads_arrow_next {
+    //         display: flex;
+    //         justify-content: center;
+    //         align-items: center;
+    //         width: 7.5vh;
+    //         height: 7.5vh;
+    //         border-radius: 50%;
+    //         background: rgba(0,0,0,0.35);
+
+    //         img {width: auto; height: 50%;}
+    //     }
+    // }
+
+    .slick-arrow.slick-prev {
+        position: absolute;
+        z-index: 20;
+        top: 50%;
+        left: 2px;
+        width: 7.5vh;
+        height: 7.5vh;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: url(../images/arrow_prev_white_bold.svg) no-repeat center, rgba(0,0,0,0.35);
+        background-size: auto 50%;
+        color: transparent;        
+    }
+
+    .slick-arrow.slick-next {
+        position: absolute;
+        z-index: 20;
+        top: 50%;
+        right: 2px;
+        width: 7.5vh;
+        height: 7.5vh;
+        border-radius: 50%;
+        transform: translateY(-50%);
+        background: url(../images/arrow_next_white_bold.svg) no-repeat center, rgba(0,0,0,0.35);
+        background-size: auto 50%;
+        color: transparent;  
+    }
+}
+
+//광고 개별 페이지 스타일
+.ads_page_enbrain_game {
+    width: 100%;
+    height: 100vh;
+    background: url(../images/bg_ads_enbraingame.png) no-repeat bottom 13.75vh center #192641;
+    background-size: contain;
+
+    .ads_cont_enbrain_game {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100vh;
+        padding: 0 4.4444%;
+        background: url(../images/enbrain_game_mockup.png) no-repeat bottom center;
+        background-size: auto 31.71vh;
+        transform: translateZ(0);
+    }
+
+    .img_wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        width: 15.62vh;
+        height: 15.62vh;
+        margin: 9.37vh 0 3.12vh;
+        border: 0.5vh solid $colorWhite;
+        border-radius: 14%;
+        background: #8D8C8D;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+        img {width: 75%; height: auto;}
+    }
+
+    figcaption {width: 100%;}
+
+    .cont_tit {
+        margin-bottom: 3.12vh;
+        color: $colorWhite;
+        line-height: 1.16;
+        text-shadow: 1px 1px 0 #121C30;
+    }
+
+    .cont_para {
+        margin-bottom: 3.12vh;
+        color: $colorWhite;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+        text-align: center;
+        text-shadow: 1px 1px 0 #121C30;
+    }
+
+    .highlight {font-weight: $fontB; color: #ffe387;}
+
+    .dot_point {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            top: -0.8rem;
+            left: 50%;
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 50%;
+            background: #ffe387;
+            transform: translateX(-50%);
+            content: '';
+        }
+    }
+
+    .download_txt {
+        margin-bottom: 5vh;
+        border-radius: 1.4rem;
+        color: $colorWhite;
+        font-weight: $fontB;
+        font-size: $fzCont;
+        letter-spacing: -0.55px;
+        line-height: 1.18;
+        text-align: center;
+        text-shadow: 1px 1px 0 #121C30;
+    }
+
+    .link_download_wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: auto;
+    }
+
+    .link_download {
+        display: inline-block;
+        width: 48.1707%;
+        height: auto;
+    
+        img {width: 100%;}
+    }
+}
+
+.ads_page_enbrain_game2 {
+    width: 100%;
+    height: 100vh;
+    background: url(../images/bg_ads_enbraingame.png) no-repeat bottom 13.75vh center #192641;
+    background-size: contain;
+
+    .ads_cont_safe_area {
+        width: 40.62vh;
+        height: 78.44vh;
+        margin: 0 auto 14.21vh;
+        padding-top: 14.21vh;
+    }
+    
+    .ads_cont_enbrain_game2 {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+
+    .img_wrap {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+        width: 15.62vh;
+        height: 15.62vh;
+        margin-bottom: 3.12vh;
+        border: 0.5vh solid $colorWhite;
+        border-radius: 14%;
+        background: #8D8C8D;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
+        img {width: 75%; height: auto;}
+    }
+
+    figcaption {
+        width: 100%;
+        background: url(../images/ads_enbrain_game.png) no-repeat center bottom 1px;
+        background-size: auto 40.31vh;
+        transform: translateZ(0);
+    }
+
+    .cont_tit {
+        margin-bottom: 3.12vh;
+        color: $colorWhite;
+        line-height: 1.16;
+        text-shadow: 1px 1px 0 #3F6BDB;
+    }
+
+    .cont_para {
+        margin-bottom: 35.93vh;
+        color: $colorWhite;
+        font-size: 1.9rem;
+        letter-spacing: -0.47px;
+        line-height: 1.16;
+        text-align: center;
+        text-shadow: 1px 1px 0 #3F6BDB;
+    }
+
+    .highlight {font-weight: $fontB; color: #ffe387;}
+
+    .dot_point {
+        position: relative;
+
+        &::after {
+            position: absolute;
+            top: -0.8rem;
+            left: 50%;
+            width: 0.4rem;
+            height: 0.4rem;
+            border-radius: 50%;
+            background: #ffe387;
+            transform: translateX(-50%);
+            content: '';
+        }
+    }
+
+    .link_download_enbrain {
+        position: relative;
+        display: block;
+        z-index: 20;
+        width: 100%;
+        height: 7.97vh;
+        margin-top: auto;
+        border-radius: 1.4rem;
+        background: #2A4672;
+        line-height: 7.97vh;
+        color: $colorWhite;
+        font-size: $fzCont;
+        font-weight: $fontB;
+        letter-spacing: -0.55px;
+        text-align: center;
+    }
+}
+
+/*============================
+*   가로:세로 화면비에 따라 배경 위치 및 요소 크기 조정
+*============================*/
+@media (max-aspect-ratio: 56/100) {
+
+    //카테고리별 배경이미지 지정
+    .inspects_wrap {
+        &.dementia {
+            background: url(../images/bg_dementia.svg) no-repeat top 6vh center, linear-gradient(to bottom, $colorDementia 20%, $colorDementiaSub 20%);
+            background-size: contain;
+        }
+
+        &.depression {
+            background: url(../images/bg_depression.svg) no-repeat top 6vh center, linear-gradient(to bottom, $colorDepression 20%, $colorDepressionSub 20%);
+            background-size: contain;
+
+            //우울증 테스트 페이지 중 질문 페이지만 배경이 다름
+            &.question {
+                background: url(../images/bg_depression_long.svg) no-repeat top 10vh center, linear-gradient(to bottom, $colorDepression 30%, $colorDepressionSub 30%);
+                background-size: 100% auto;
+            }
+        }
+
+        &.stress {
+            background: url(../images/bg_stress.svg) no-repeat top 6vh center, linear-gradient(to bottom, $colorStress 20%, $colorStressSub 20%);
+            background-size: contain;
+        }
+    }
+
+    //홈 (테스트 선택) 페이지
+    .test_category_boxes .box_area {
+        height: 21vh;
+
+        // .category_tit {font-size: 4rem;}
+        // .category_subtit {font-size: 1.6rem;}
+    }
+
+    //설정 페이지
+//    .results_view_boxes .box_area img {width: auto; height: 86.6667%;}
+}
+
+@media (min-aspect-ratio: 57/100) {
+    //카테고리별 배경이미지 지정
+    .inspects_wrap {    
+        &.dementia {background-position: top -5vh center;}    
+        &.depression {
+            background-position: top -5vh center;    
+            //우울증 테스트 페이지 중 질문 페이지만 배경이 다름
+            &.question {background-position: top -6vh center;}
+        }    
+        &.stress {background-position: top -5vh center;}
+    }
+}
+
+@media (min-aspect-ratio: 64/100) {
+    //카테고리별 배경이미지 지정
+    .inspects_wrap {    
+        &.dementia {background-position: top -8vh center;}    
+        &.depression {
+            background-position: top -8vh center;    
+            //우울증 테스트 페이지 중 질문 페이지만 배경이 다름
+            &.question {background-position: top -12vh center;}
+        }    
+        &.stress {background-position: top -8vh center;}
+    }
+}
+
+//ipad 화면비 규격
+@media (min-aspect-ratio: 74/100) {
+    //카테고리별 배경이미지 지정
+    .inspects_wrap {
+    
+        &.dementia {background-position: top -20vh center;}
+    
+        &.depression {
+            background-position: top -20vh center;
+    
+            //우울증 테스트 페이지 중 질문 페이지만 배경이 다름
+            &.question {background-position: top -28vh center;}
+        }
+    
+        &.stress {background-position: top -20vh center;}
+    }
+
+    //홈 (테스트 선택) 페이지
+    .test_category_boxes .box_area {
+        // img {width: auto; height: 60%;}
+        .category_tit {font-size: 4rem;}
+        .category_subtit {font-size: 1.6rem;}
+    }
+
+    //홈 (테스트 선택) 화면 배너 조정
+    .banner_thin_area .banner1 .banner_cont_wrap {
+        max-width: 75%;
+    }
+
+    //치매 테스트
+    // .object_choice6 {
+    //     @include image_choice_custom;
+    
+    //     .image_wrap img {
+    //             width: auto;
+    //             height: 100%;
+    //             top: 0;
+    //             left: 50%;
+    //             transform: translateY(0);
+    //             transform: translateX(-50%);
+    //         }
+    //     }
+    // }
+
+    // .fruit_choice6 {
+    //     @include image_choice_custom;
+        
+    //     .image_wrap {
+    //         background: #f9f9f9;
+
+    //         img {
+    //             width: auto;
+    //             height: 100%;
+    //             top: 0;
+    //             left: 50%;
+    //             transform: translateY(0);
+    //             transform: translateX(-50%);
+    //         }
+    //     }
+    // }
+}
+
+/*============================
+*   작은 모바일 Small Mobile 버전
+*============================*/
+@media (max-width:359px) {
+    html {font-size: 8px;}
+}
+
+
+/*============================
+*   태블릿 Tablet 버전
+*============================*/
+
+//가로 버전 (세로:portrait 화면 고정을 우선으로 고려)
+@media (min-width:768px) and (orientation: landscape) {
+    //공통 스타일
+    .app {max-width: 56.25vh}
+}
+
+//세로 버전
+@media (min-width:768px) and (orientation: portrait) {
+    //공통 스타일
+
+    html {font-size: 100%}
+
+    //상단바 세로 폭
+    .tnb_area .basic_box{height: 80px;}
+
+    //컨텐츠 영역 세로 폭
+    .contents_wrap {height: calc(100vh - 84px);}
+
+    //홈 (테스트 선택) 페이지
+    // .test_category_boxes .box_area {
+    //     height: 19.5vh;
+
+    //     img {width: auto; height: 70%;}
+    // }
+
+    //설정 페이지
+    // .results_view_boxes .box_area img {width: auto; height: 86.6667%;}
+
+    //치매 테스트
+    .drag_drop_area {    
+        .dragzone, .dropzone {
+            width: 160px;
+        }
+    
+        // .dropzone {top: calc(100% - 160px) }
+    
+        // &.move_triangle .dropzone.after {top: calc(100% - 320px); }
+    }
+}

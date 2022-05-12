@@ -1,0 +1,25 @@
+1. npm install -g @ionic/cli
+2. git clone xxx/inspectsIonicApp 
+3. cd inspectsIonicApp
+4. yarn install 
+5. ionic —version
+6. npm start  <- 실행 
+7. npm run build
+8. npx cap add android
+9. npx cap copy && npx cap sync
+10. npx cap open android
+11. android/app/build.gradle file will need to be edited to increment the versionCode
+
+	(테스트 버전은) build
+	(업로드 버전은) 버전코드 업데이트 <- build.gradle 버전코드 수정해야 함 
+	npx cap sync android
+	generate bundle~ 
+
+  547  npm run build
+  549  npx cap copy && npx cap sync
+  551  npx cap sync
+  554  npx cap open android
+
+	vscode > Ionic > Splash & Icon > Rebuild 
+	위의 명령어 547 ~ 554 실행 
+

@@ -1,0 +1,13 @@
+{
+	"appId": "com.careyou.dementia",
+	"appName": "정신건강테스트",
+	"webDir": "build",
+	"bundledWebRuntime": false,
+	"windowsAndroidStudioPath" : "C:\\Program Files\\Android\\Android Studio\\bin\\studio64.exe",
+	"plugins":{
+		"SplashScreen": {
+			"splashFullScreen": true,
+			"androidScaleType": "CENTER_CROP"
+		}
+	}
+}

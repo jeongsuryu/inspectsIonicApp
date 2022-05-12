@@ -1,0 +1,106 @@
+@charset "utf-8";
+@import './fonts_inspects.css';
+/* Regular(400), Bold(700), Light(300) */
+/*
+ * Licensed to the Apache Software Foundation (ASF) under one
+ * or more contributor license agreements.  See the NOTICE file
+ * distributed with this work for additional information
+ * regarding copyright ownership.  The ASF licenses this file
+ * to you under the Apache License, Version 2.0 (the
+ * "License"); you may not use this file except in compliance
+ * with the License.  You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+* { box-sizing:border-box;}
+   
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video { margin:0; padding:0; border:0; outline:0; vertical-align:top; background:transparent; }
+
+/* html {font-size:62.5%} */
+body {
+    -webkit-touch-callout: none;/* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none;/* prevent webkit from resizing text to fit */
+    font-family: 'NanumBarunGothic', system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-weight:400; height:100vh;
+    
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    text-transform:uppercase;
+    width:100%;
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure, footer,header,hgroup,menu,nav,section { display:block; }
+
+ul,ol { list-style:none; }
+
+a { margin:0; padding:0; font:inherit; background:transparent; text-decoration: none; color:inherit }
+input, textarea, button {border: none; margin: 0; padding: 0; background: none; outline:0; user-select: none; line-height:inherit; appearance: none;  background:none; color:inherit; font:inherit}
+input:-webkit-autofill {background-color: transparent !important; transition: background-color 5000s ease-in-out 0s;}
+table { width:100%; border-collapse:collapse; border-spacing:0; }
+
+
+h1,h2,h3,h4,h5,h6 {font-weight: normal;}
+em, i, strong, b {font-weight: inherit; font-style:normal}
+img {max-width:100%; }
+hr { display:block; height:1px; border:0; padding:0; }
+
+
+.blind_block {
+    overflow : hidden;
+    position : absolute; width : 1px; height : 1px;
+    padding : 0; margin : -1px;
+    border : 0; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);   
+  }
+  
+  caption, legend, .blind_inline {
+    overflow: hidden;
+    display: inline-block; width: 1px; height: 1px;
+    margin: -1px; border:0;  
+    clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
+  }
+
+  
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .inspects_wrap {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+.blink { animation:fade 3000ms infinite; -webkit-animation:fade 3000ms infinite; }
+
+
+@media screen and (prefers-color-scheme: dark) {
+    body {
+        background-image:linear-gradient(to bottom, #585858 0%, #1B1B1B 51%);
+    }
+}
+
